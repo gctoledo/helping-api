@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS users(
+    id UUID PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tickets(
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(ID) ON DELETE CASCADE NOT NULL,
+    helper_id UUID REFERENCES users(ID) ON DELETE CASCADE NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    date DATE NOT NULL
+);
