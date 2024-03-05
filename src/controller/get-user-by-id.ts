@@ -2,6 +2,7 @@ import { Request } from "express";
 import validator from "validator";
 import { GetUserByIdUseCase } from "../use-cases/get-user-by-id";
 import { ControllerReturnTypes } from "./types/controller-return-types";
+import { serverError, ok, badRequest } from "./helpers/http";
 
 export class GetUserByIdController {
   async execute(httpRequest: Request): Promise<ControllerReturnTypes> {
@@ -11,12 +12,9 @@ export class GetUserByIdController {
       const idIsValid = validator.isUUID(userId);
 
       if (!idIsValid) {
-        return {
-          statusCode: 400,
-          body: {
-            message: "The provided id is not valid.",
-          },
-        };
+        return badRequest({
+          message: "The provided id is not valid.",
+        });
       }
 
       const getUserByIdUseCase = new GetUserByIdUseCase();
@@ -32,15 +30,10 @@ export class GetUserByIdController {
         };
       }
 
-      return { statusCode: 200, body: user };
+      return ok(user);
     } catch (err) {
       console.error(err);
-      return {
-        statusCode: 500,
-        body: {
-          message: "Internal server error",
-        },
-      };
+      return serverError();
     }
   }
 }
