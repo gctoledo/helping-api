@@ -15,7 +15,7 @@ export const badRequest = (body: BodyParams): ControllerReturnTypes => ({
   body,
 });
 
-export const ok = (body: BodyParams) => ({
+export const ok = (body: BodyParams): ControllerReturnTypes => ({
   statusCode: 200,
   body,
 });
