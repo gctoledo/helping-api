@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 
 import { GetUserByIdController } from "./src/controller/get-user-by-id";
 import { CreateUserController } from "./src/controller/create-user";
+import { DeleteUserController } from "./src/controller/delete-user";
 
 const app = express();
 
@@ -21,6 +22,14 @@ app.post("/api/users", async (req: Request, res: Response) => {
   const createUserController = new CreateUserController();
 
   const response = await createUserController.execute(req);
+
+  res.status(response.statusCode).send(response.body);
+});
+
+app.delete("/api/users/:userId", async (req: Request, res: Response) => {
+  const deleteUserController = new DeleteUserController();
+
+  const response = await deleteUserController.execute(req);
 
   res.status(response.statusCode).send(response.body);
 });
