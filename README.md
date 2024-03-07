@@ -8,3 +8,5 @@ O teste das rotas está sendo feito via Postman e o banco de dados está rodando
 
 Esse repositório contém o back-end da aplicação, onde estão em construção as rotas da API e suas funcionalidades.
 Irei ao máximo aplicar os conceitos de SOLID, Clean Architecture, entre outros, tentando evoluir cada vez mais a qualidade do meu código.
+
+A documentação da API e as instruções de instalação serão adicionadas o mais rápido possível.
